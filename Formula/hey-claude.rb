@@ -17,8 +17,8 @@ class HeyClaude < Formula
 
   desc "Say 'Hey Claude' to dispatch a Claude Code background agent — on-device voice wake word"
   homepage "https://github.com/tachyurgy/hey-claude"
-  url "https://github.com/tachyurgy/hey-claude/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000" # set on release
+  url "https://github.com/tachyurgy/hey-claude/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "17199943e48ce54ed3905277156b4b3e390976f3c6fa949ac3ac3ca42e97534a" # v0.2.0
   license "MIT"
 
   depends_on "portaudio"
@@ -41,14 +41,20 @@ class HeyClaude < Formula
       hey-claude needs Claude Code (>= 2.1.139) on your PATH:
         https://code.claude.com   →   then run:  claude --version
 
-      First-run setup:
+      First-run setup (a "hey claude" wake word ships in the box — no training):
         hey-claude doctor          # checks mic, claude, models
-        hey-claude train           # get a free "hey claude" wake-word model
-        hey-claude                 # start listening
+        hey-claude                 # start listening immediately
+        hey-claude models          # see / switch bundled wake words
+        hey-claude agent use codex # optional: drive a different agent CLI
 
       Microphone permission: grant it to your terminal on first run, or build a
       permission-stable app:
         hey-claude app
+
+      Uninstalling? Run the teardown BEFORE `brew uninstall` — Homebrew can't
+      reach the config dir, your trained models, or ~/Applications:
+        hey-claude uninstall --all
+      (then revoke mic access in System Settings -> Privacy -> Microphone).
     EOS
   end
 
